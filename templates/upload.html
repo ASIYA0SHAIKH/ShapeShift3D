@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Image - ShapeShift3D{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h2><i class="fas fa-upload me-2"></i>Upload Your Image</h2>
+                <p class="lead text-muted">Transform your 2D images into stunning 3D models</p>
+            </div>
+            
+            <!-- Upload Form -->
+            <div class="card shadow">
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <!-- Model Name -->
+                        <div class="mb-4">
+                            <label for="model_name" class="form-label">Model Name</label>
+                            <input type="text" class="form-control" id="model_name" name="model_name" placeholder="Enter a name for your 3D model" required>
+                        </div>
+                        
+                        <!-- File Upload Zone -->
+                        <div class="mb-4">
+                            <label class="form-label">Select Image File</label>
+                            <div class="upload-zone" id="upload-zone">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <h5>Drag & Drop your image here</h5>
+                                <p class="text-muted">or <strong>click to browse</strong></p>
+                                <p class="small text-muted">Supports: PNG, JPG, JPEG, GIF, WebP (Max: 16MB)</p>
+                            </div>
+                            <input type="file" class="form-control d-none" id="file-input" name="file" accept=".png,.jpg,.jpeg,.gif,.webp" required>
+                        </div>
+                        
+                        <!-- File Preview -->
+                        <div id="file-preview" style="display: none;" class="mb-4">
+                            <h6>Preview:</h6>
+                        </div>
+                        
+                        <!-- Processing Options -->
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <h6><i class="fas fa-cogs me-2"></i>Processing Options</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="enhance_details" checked>
+                                            <label class="form-check-label" for="enhance_details">
+                                                Enhance Details
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="smooth_edges" checked>
+                                            <label class="form-check-label" for="smooth_edges">
+                                                Smooth Edges
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-magic me-2"></i>Generate 3D Model
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Tips -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6><i class="fas fa-lightbulb me-2"></i>Tips for Best Results</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Use high-contrast images</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Clear subject boundaries</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Avoid overly complex backgrounds</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Good lighting in photos</li>
+                                <li><i class="fas fa-check text-success me-2"></i>High resolution images (1MP+)</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Single main subject works best</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

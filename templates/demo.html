@@ -1,0 +1,391 @@
+{% extends "base.html" %}
+
+{% block title %}Demo - ShapeShift3D{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="slide-up">See ShapeShift3D in Action</h1>
+            <p class="slide-up">Watch how easy it is to transform 2D content into stunning 3D models</p>
+        </div>
+    </div>
+</section>
+
+<!-- Demo Video Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg">
+                    <div class="card-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <div class="d-flex align-items-center justify-content-center bg-dark text-white rounded">
+                                <div class="text-center">
+                                    <i class="fas fa-play-circle fa-5x mb-3 text-primary"></i>
+                                    <h4>Demo Video</h4>
+                                    <p class="mb-4">Watch a complete walkthrough of ShapeShift3D's features</p>
+                                    <button class="btn btn-primary btn-lg" onclick="playDemoVideo()">
+                                        <i class="fas fa-play me-2"></i>Play Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <i class="fas fa-clock text-primary me-1"></i>
+                                <strong>5 minutes</strong> - Complete overview
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <strong>4.9/5</strong> - User rating
+                            </div>
+                            <div class="col-md-4">
+                                <i class="fas fa-eye text-info me-1"></i>
+                                <strong>50K+</strong> - Views
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature Demos -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Interactive Feature Demos</h2>
+            <p class="lead text-muted">Explore each feature with hands-on examples</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Image Upload Demo -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5><i class="fas fa-upload me-2"></i>Image Upload Demo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="demo-container mb-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="text-center p-3 bg-light rounded">
+                                        <i class="fas fa-image fa-3x text-muted mb-2"></i>
+                                        <p class="small mb-0">Original 2D Image</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center p-3 bg-primary text-white rounded">
+                                        <i class="fas fa-cube fa-3x mb-2"></i>
+                                        <p class="small mb-0">Generated 3D Model</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted">Upload any image and watch it transform into a 3D model with accurate depth and geometry.</p>
+                        <a href="{{ url_for('upload') }}" class="btn btn-primary">
+                            <i class="fas fa-upload me-1"></i>Try Upload
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Drawing Demo -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5><i class="fas fa-paint-brush me-2"></i>Drawing Tool Demo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="demo-container mb-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <canvas id="demo-canvas" width="200" height="150" style="border: 2px dashed #ccc; border-radius: 8px;"></canvas>
+                                <p class="small mt-2 mb-0">Draw something simple!</p>
+                            </div>
+                        </div>
+                        <p class="text-muted">Use our intuitive drawing tools to create artwork directly in your browser, then convert to 3D.</p>
+                        <a href="{{ url_for('draw') }}" class="btn btn-secondary">
+                            <i class="fas fa-paint-brush me-1"></i>Try Drawing
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Demo -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>How It Works</h2>
+            <p class="lead text-muted">Step-by-step process demonstration</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="process-demo">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-2 text-center">
+                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <span class="h4 mb-0">1</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-upload fa-2x text-primary mb-2"></i>
+                                    <h6>Upload or Draw</h6>
+                                    <small class="text-muted">Provide your 2D content</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <i class="fas fa-arrow-right fa-2x text-muted"></i>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="progress">
+                                <div class="progress-bar bg-primary" style="width: 100%"></div>
+                            </div>
+                            <small class="text-muted">Step 1 Complete</small>
+                        </div>
+                    </div>
+                    
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md-2 text-center">
+                            <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <span class="h4 mb-0">2</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-brain fa-2x text-success mb-2"></i>
+                                    <h6>AI Processing</h6>
+                                    <small class="text-muted">Analyze and generate 3D</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <i class="fas fa-arrow-right fa-2x text-muted"></i>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="progress">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+                            </div>
+                            <small class="text-muted">Processing...</small>
+                        </div>
+                    </div>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                            <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <span class="h4 mb-0">3</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-cube fa-2x text-info mb-2"></i>
+                                    <h6>3D Model Ready</h6>
+                                    <small class="text-muted">View, edit, and download</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <i class="fas fa-check fa-2x text-success"></i>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" style="width: 100%"></div>
+                            </div>
+                            <small class="text-success">Complete!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Success Stories -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Success Stories</h2>
+            <p class="lead text-muted">See what our users have created</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"ShapeShift3D turned my concept sketches into 3D prototypes in minutes. Amazing for rapid product development!"</p>
+                            <footer class="blockquote-footer">Sarah Chen, Product Designer</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"As an educator, this tool helps me create 3D models for my lessons without needing expensive software or training."</p>
+                            <footer class="blockquote-footer">Dr. Michael Torres, Professor</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <blockquote class="blockquote">
+                            <p class="mb-3">"I've been using ShapeShift3D for my indie game development. The character models it generates are fantastic starting points."</p>
+                            <footer class="blockquote-footer">Alex Rivera, Game Developer</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>Ready to Start Creating?</h2>
+                <p class="lead mb-4">Experience the power of AI-driven 3D model generation for yourself</p>
+                {% if not session.user_id %}
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-rocket me-2"></i>Start Free Trial
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+                    </a>
+                {% endif %}
+                <a href="{{ url_for('features') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-list me-2"></i>View All Features
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Demo canvas functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('demo-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        
+        // Set up canvas
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        
+        // Mouse events
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch events
+        canvas.addEventListener('touchstart', handleTouch);
+        canvas.addEventListener('touchmove', handleTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+        
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+        
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
+                                            e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+        
+        // Add some initial text
+        ctx.font = '12px Arial';
+        ctx.fillStyle = '#9ca3af';
+        ctx.textAlign = 'center';
+        ctx.fillText('Try drawing here!', canvas.width / 2, canvas.height / 2);
+    }
+});
+
+function playDemoVideo() {
+    // In a real implementation, this would play an actual video
+    if (window.ShapeShift3D) {
+        window.ShapeShift3D.showAlert('Demo video would play here! In a real implementation, this would show an embedded video player.', 'info');
+    }
+}
+
+// Animate progress bars
+document.addEventListener('DOMContentLoaded', function() {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBar = entry.target;
+                const width = progressBar.style.width;
+                progressBar.style.width = '0%';
+                setTimeout(() => {
+                    progressBar.style.transition = 'width 1s ease-in-out';
+                    progressBar.style.width = width;
+                }, 100);
+            }
+        });
+    });
+    
+    progressBars.forEach(bar => observer.observe(bar));
+});
+</script>
+{% endblock %}

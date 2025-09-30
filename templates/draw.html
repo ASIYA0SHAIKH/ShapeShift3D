@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Draw & Create - ShapeShift3D{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <!-- Canvas Area -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h5><i class="fas fa-paint-brush me-2"></i>Drawing Canvas</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Canvas Tools -->
+                    <div class="canvas-tools">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="btn-group" role="group">
+                                    <button class="tool-button active" data-tool="pen">
+                                        <i class="fas fa-pen"></i> Pen
+                                    </button>
+                                    <button class="tool-button" data-tool="eraser">
+                                        <i class="fas fa-eraser"></i> Eraser
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <label for="color-picker" class="form-label mb-0">Color:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="color" class="form-control form-control-color" id="color-picker" value="#000000">
+                                    </div>
+                                    <div class="col-auto">
+                                        <label for="brush-size" class="form-label mb-0">Size:</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="range" class="form-range" id="brush-size" min="1" max="50" value="5">
+                                        <small id="size-display" class="text-muted">5px</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <button class="btn btn-outline-secondary btn-sm" id="clear-canvas">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="undo-canvas">
+                                <i class="fas fa-undo"></i> Undo
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="redo-canvas">
+                                <i class="fas fa-redo"></i> Redo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Canvas -->
+                    <div class="canvas-container">
+                        <canvas id="drawing-canvas" style="border-radius: 10px; display: block; margin: 0 auto;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Model Settings -->
+            <div class="card shadow mb-4">
+                <div class="card-header">
+                    <h6><i class="fas fa-cog me-2"></i>Model Settings</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="model-name" class="form-label">Model Name</label>
+                        <input type="text" class="form-control" id="model-name" placeholder="My Drawing" value="My Drawing">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Generation Options</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="auto-depth" checked>
+                            <label class="form-check-label" for="auto-depth">
+                                Auto Depth Detection
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="smooth-surface" checked>
+                            <label class="form-check-label" for="smooth-surface">
+                                Smooth Surface
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary w-100" id="save-drawing">
+                        <i class="fas fa-magic me-2"></i>Generate 3D Model
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Drawing Tips -->
+            <div class="card">
+                <div class="card-header">
+                    <h6><i class="fas fa-lightbulb me-2"></i>Drawing Tips</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled small">
+                        <li><i class="fas fa-check text-success me-2"></i>Use bold, clear strokes</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Keep shapes simple and defined</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Avoid too many small details</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Close your shapes for better results</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Use different colors for depth cues</li>
+                    </ul>
+                    
+                    <hr>
+                    
+                    <h6>Keyboard Shortcuts</h6>
+                    <small class="text-muted">
+                        <strong>Ctrl+Z:</strong> Undo<br>
+                        <strong>Ctrl+Y:</strong> Redo<br>
+                        <strong>Ctrl+Shift+Z:</strong> Redo
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Quick Shapes -->
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h6><i class="fas fa-shapes me-2"></i>Quick Shapes</h6>
+                </div>
+                <div class="card-body">
+                    <p class="small text-muted">Coming soon: Pre-defined shapes and templates to help you get started faster.</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            <i class="fas fa-circle me-1"></i>Circle
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            <i class="fas fa-square me-1"></i>Rectangle
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            <i class="fas fa-play me-1"></i>Triangle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
